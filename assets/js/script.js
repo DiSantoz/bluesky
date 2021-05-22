@@ -5,10 +5,12 @@ var lon1;
 // display current date
 var currentDate = moment().format("MM/DD/YYYY");
 
-$("#cityName").text(currentDate);
+
 
 // get the currentWeather and lattitue and longitude coordinates for city
 $(".btn").on("click", function (event) {
+
+    $("#cityName").text(currentDate);
 
     
     event.preventDefault();
@@ -24,6 +26,7 @@ $(".btn").on("click", function (event) {
             return response.json();
         })
         .then(function (data) {
+
             console.log(data.name);
 
             lat = (data.coord.lat);
@@ -57,25 +60,25 @@ function coord(lat1, lon1) {
             var temp = data.current.temp;
             console.log("Current temp is " + data.current.temp);
             var currTemp = document.querySelector('#temp');
-            currTemp.innerHTML = temp + "&#176;" + " F";
+            currTemp.innerHTML = "Temp: " + temp + "&#176;" + " F";
 
             // dis play current wind
             var wind = data.current.wind_speed
             console.log("current wind speed is " + data.current.wind_speed)
             var currWind = document.querySelector('#wind');
-            currWind.innerHTML = wind + " MPH";
+            currWind.innerHTML = "Wind: " + wind + " MPH";
 
             // display current humdity
             var humid = data.current.humidity
             console.log("current humidity is " + data.current.humidity)
             var currHumid = document.querySelector('#humid');
-            currHumid.innerHTML = humid + " %";
+            currHumid.innerHTML = "Humidity: " + humid + " %";
 
             // display current uvi
             var uvi = data.current.uvi
             console.log("current uvi is " + data.current.uvi)
             var currUvi = document.querySelector('#uv');
-            currUvi.innerHTML = uvi;
+            currUvi.innerHTML = "UV Index: " + uvi;
         })
 };
 
@@ -91,6 +94,7 @@ function fiveDay(lat1,lon1) {
         })
         .then(function (data) {
             console.log(data.list)
+
         })
 };
 
