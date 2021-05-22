@@ -16,8 +16,9 @@ $(".btn").on("click", function (event) {
     var city = $("#city").val();
      console.log(city);
 
+
     fetch(
-        'https://api.openweathermap.org/data/2.5/weather?q=london&units=imperial&appid=8f4b5fb79bf55ca4186b297ac79fb394'
+        'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=8f4b5fb79bf55ca4186b297ac79fb394'
     )
         .then(function (response) {
             return response.json();
