@@ -8,7 +8,13 @@ var currentDate = moment().format("MM/DD/YYYY");
 $("#cityName").text(currentDate);
 
 // get the currentWeather and lattitue and longitude coordinates for city
-function currentWeather() {
+$(".btn").on("click", function (event) {
+
+    
+    event.preventDefault();
+
+    var city = $("#city").val();
+     console.log(city);
 
     fetch(
         'https://api.openweathermap.org/data/2.5/weather?q=london&units=imperial&appid=8f4b5fb79bf55ca4186b297ac79fb394'
@@ -27,12 +33,12 @@ function currentWeather() {
             lon1 = lon.toString()
             console.log(lon1);
 
-            // call coord function
+            // call coord and fiveday function
             coord(lat1, lon1)
             fiveDay(lat1, lon1);
         })
 
-};
+});
 
 // function to display weather conditions of city based on lon and lat
 function coord(lat1, lon1) {
@@ -50,7 +56,7 @@ function coord(lat1, lon1) {
             var temp = data.current.temp;
             console.log("Current temp is " + data.current.temp);
             var currTemp = document.querySelector('#temp');
-            currTemp.innerHTML = temp + "&#176; F";
+            currTemp.innerHTML = temp + "&#176;" + " F";
 
             // dis play current wind
             var wind = data.current.wind_speed
@@ -89,5 +95,5 @@ function fiveDay(lat1,lon1) {
 
 
 
-currentWeather();
+
 
