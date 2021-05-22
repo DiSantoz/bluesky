@@ -1,30 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css"/>
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Blue Sky</title>
 </head>
 <!-- Title of app -->
+
 <body>
-    <header class="title"> 
-    <h1>Weather Dashboard</h1>
+    <header class="title">
+        <h1>Weather Dashboard</h1>
     </header>
-    
+
     <main>
         <!-- Search weather of city -->
         <h3>Search for a City</h3>
         <form class="search" id="search">
-            <input id="city" class="city" type="text"/>
+            <input id="city" class="city" type="text" />
             <button type="submit" class="btn">Search</button>
         </form>
 
-        
+        <div class="container" id="container">
+            <h3 class="cityName" id="cityName"></h3>
+            <ul>
+                <li class="temp" id="temp"></li>
+                <li class="wind" id="wind"></li>
+                <li class="humid" id="humid"></li>
+                <li class="uv" id="uv"></li>
+            </ul>
+
+        </div>
+
     </main>
 
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/script.js"></script>
+
 </body>
+
 </html>
