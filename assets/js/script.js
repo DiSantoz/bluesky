@@ -18,24 +18,25 @@ function currentWeather() {
         })
         .then(function (data) {
             console.log(data.name);
-            
+
             lat = (data.coord.lat);
             lat1 = lat.toString()
             console.log(lat1);
-            
+
             lon = data.coord.lon;
             lon1 = lon.toString()
             console.log(lon1);
-            
+
             // call coord function
             coord(lat1, lon1)
+            fiveDay(lat1, lon1);
         })
-        
-    };
-    
-    // function to display weather conditions of city based on lon and lat
-    function coord(lat1, lon1) {
-        
+
+};
+
+// function to display weather conditions of city based on lon and lat
+function coord(lat1, lon1) {
+
     fetch(
         'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat1 + '&lon=' + lon1 + '&units=imperial&exclude=minutely,hourly&appid=8f4b5fb79bf55ca4186b297ac79fb394'
     )
@@ -49,7 +50,7 @@ function currentWeather() {
             var temp = data.current.temp;
             console.log("Current temp is " + data.current.temp);
             var currTemp = document.querySelector('#temp');
-            currTemp.innerHTML = temp + "&#176; F"; 
+            currTemp.innerHTML = temp + "&#176; F";
 
             // dis play current wind
             var wind = data.current.wind_speed
@@ -69,7 +70,24 @@ function currentWeather() {
             var currUvi = document.querySelector('#uv');
             currUvi.innerHTML = uvi;
         })
-
 };
 
+// five day forcast function
+
+function fiveDay(lat1,lon1) {
+
+    fetch(
+        'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat1+ '&lon=' + lon1 + '&units=imperial&appid=8f4b5fb79bf55ca4186b297ac79fb394'
+    )
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data.list)
+        })
+};
+
+
+
 currentWeather();
+
