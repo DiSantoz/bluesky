@@ -84,21 +84,23 @@ function coord(lat1, lon1) {
             currUvi.innerHTML = "UV Index: " + "<span id='uvIndex'>" + uvi + "</span";
 
             // checks if uvi is  favorable, moderate, or severe
-            if (uvi <= 2.00 ){
+
+            //if uvi between 0-2: favorable
+            if (uvi <= 2.00) {
                 $("#uvIndex").css("background-color", "green");
                 $("#uvIndex").css("color", "white");
                 $("#uvIndex").css("border-radius", "5px");
-            } else if (uvi > 7.99 ){
+            // if uvi between 3-7.99: moderate
+            } else if (uvi <= 7.99) {
                 $("#uvIndex").css("background-color", "orange");
                 $("#uvIndex").css("color", "white");
                 $("#uvIndex").css("border-radius", "5px");
-            } else if (uvi > 8.00 ){
+            // if uvi above 8: severe
+            } else if (uvi >= 8.00) {
                 $("#uvIndex").css("background-color", "red");
                 $("#uvIndex").css("color", "white");
                 $("#uvIndex").css("border-radius", "5px");
             };
-            
-
         })
 };
 
