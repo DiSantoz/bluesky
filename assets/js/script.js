@@ -12,13 +12,13 @@ var currentDate = moment().format("MM/DD/YYYY");
 $(".btn").on("click", function (event) {
 
     $("#date").text("(" + currentDate + ")");
-    
+
     event.preventDefault();
 
     var city = $("#city").val();
-     console.log(city);
+    console.log(city);
 
-     
+
 
     fetch(
         'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=8f4b5fb79bf55ca4186b297ac79fb394'
@@ -65,25 +65,21 @@ function coord(lat1, lon1) {
 
             // display current temp 
             var temp = data.current.temp;
-            // console.log("Current temp is " + data.current.temp);
             var currTemp = document.querySelector('#temp');
             currTemp.innerHTML = "Temp: " + temp + "&#176;" + " F";
 
             // dis play current wind
             var wind = data.current.wind_speed
-            // console.log("current wind speed is " + data.current.wind_speed)
             var currWind = document.querySelector('#wind');
             currWind.innerHTML = "Wind: " + wind + " MPH";
 
             // display current humdity
             var humid = data.current.humidity
-            // console.log("current humidity is " + data.current.humidity)
             var currHumid = document.querySelector('#humid');
             currHumid.innerHTML = "Humidity: " + humid + " %";
 
             // display current uvi
             var uvi = data.current.uvi
-            // console.log("current uvi is " + data.current.uvi)
             var currUvi = document.querySelector('#uv');
             currUvi.innerHTML = "UV Index: " + uvi;
         })
@@ -91,7 +87,7 @@ function coord(lat1, lon1) {
 
 // five day forcast function
 
-function fiveDay(lat1,lon1) {
+function fiveDay(lat1, lon1) {
 
     fetch(
         'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat1 + '&lon=' + lon1 + '&units=imperial&exclude=minutely,hourly&appid=8f4b5fb79bf55ca4186b297ac79fb394'
@@ -102,52 +98,51 @@ function fiveDay(lat1,lon1) {
         .then(function (data) {
             console.log(data)
 
-            
 
             // loop through the 5 arrays of the 7 day forecast to display only 5 day forecast
-            for (var i= 0; i < 5; i++){
+            for (var i = 0; i < 5; i++) {
 
-            var call = document.querySelector("#column-" + i);
+                var call = document.querySelector("#column-" + i);
 
-            //  forecast time
-            var t = data.daily[i].dt
-            console.log(t);
-            var forTime = moment.unix(t).format("MM/DD/YYY");
-            console.log(forTime);
-            var displayTime = document.createElement("div");
-            displayTime.innerHTML = forTime;
+                //  forecast time
+                var t = data.daily[i].dt
+                var forTime = moment.unix(t).format("MM/DD/YYY");
+                console.log(forTime);
+                var displayTime = document.createElement("div");
+                displayTime.innerHTML = forTime;
 
-            // forecast weather icon
-            var forIcon = data.daily[i].weather[0].icon;
-            console.log(forIcon);
-            var forIconEl = document.createElement("img");
-            forIconEl.setAttribute("id", "forcon")
-            var forIconLink = "http://openweathermap.org/img/wn/" + forIcon + ".png";
-            $('#forcon').attr('src', forIconLink);
+                // forecast weather icon
+                var forIcon = data.daily[i].weather[0].icon;
+                console.log(forIcon);
+                var forIconEl = document.createElement("img");
+                forIconEl.setAttribute("id", "forcon")
+                var forIconLink = "http://openweathermap.org/img/wn/" + forIcon + ".png";
+                $('#forcon').attr('src', forIconLink);
 
-            // temperature forecast
-            var forTemp = data.daily[i].temp.max;
-            var displayTemp = document.createElement("div");
-            displayTemp.innerHTML = "Temp: " + forTemp + "&#176;" + " F";
+                // temperature forecast
+                var forTemp = data.daily[i].temp.max;
+                var displayTemp = document.createElement("div");
+                displayTemp.innerHTML = "Temp: " + forTemp + "&#176;" + " F";
 
-            // windspeed forecast
-            var forWind = data.daily[i].wind_speed;
-            var displayWind = document.createElement("div");
-            displayWind.innerHTML = "Wind: " + forWind + " MPH";
+                // windspeed forecast
+                var forWind = data.daily[i].wind_speed;
+                var displayWind = document.createElement("div");
+                displayWind.innerHTML = "Wind: " + forWind + " MPH";
 
-            // humidity forecast
-            var forHumid = data.daily[i].humidity;
-            var displayHumid = document.createElement("div");
-            displayHumid.innerHTML = "Humidity: " + forHumid + " %";
+                // humidity forecast
+                var forHumid = data.daily[i].humidity;
+                var displayHumid = document.createElement("div");
+                displayHumid.innerHTML = "Humidity: " + forHumid + " %";
 
-            call.appendChild(displayTime);
-            call.appendChild(forIconEl);
-            call.appendChild(displayTemp);
-            call.appendChild(displayWind);
-            call.appendChild(displayHumid);
+                //append each variable 
+                call.appendChild(displayTime);
+                call.appendChild(forIconEl);
+                call.appendChild(displayTemp);
+                call.appendChild(displayWind);
+                call.appendChild(displayHumid);
             }
         })
-    
+
 };
 
 

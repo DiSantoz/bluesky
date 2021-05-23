@@ -1,86 +1,89 @@
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* header styling */
-  h1{
-      text-align: center;
-      background-image: linear-gradient(to right,rgb(9, 176, 253) , rgb(158, 25, 158));
-      color: white;
-      padding: 10px;
-      margin-bottom: 5px;
-  }
 
-/* styling for current weather conditions */
-  .container{
-      border-style: solid;
-      border-width: thin;
-      margin: 5px;
-      margin-left: 30%;
-
-  }
-
-  .header{
-    display: flex;
-    font-weight: bold;
-    font-size: 20px;
-  }
-
-  .cityName{
-    padding: 7px;
-  }
-
-  .date{
-    padding: 7px;
-  }
-
-  .cond{
-      padding: 5px;
-      font-size: 20px;
-  }
-
-.list{
-      list-style: none;
-  }
-
-  /* styling for searching for city */
-  .city{
-    width: 20%;
-    margin-bottom: 7px;
-    padding: 7px;
-  }
-  
-  .btn{
-    background-color: rgb(37, 113, 201);
-    color: white;
-    width: 20%;
-    border-radius: 5px;
-    padding: 7px;
-  }
-
-  .search{
-      margin: 5px;
-      display: flex;
-      flex-direction: column;
-  }
-  
-  /* styling for 5 day forecast */
-.row{
-    display: flex;
-    justify-content: space-around;
-    padding-top: 20px;
+h1 {
+  text-align: center;
+  background-image: linear-gradient(to right, rgb(9, 176, 253), rgb(158, 25, 158));
+  color: white;
+  padding: 10px;
+  margin-bottom: 5px;
 }
 
-.column-0, .column-1, .column-2, .column-3, .column-4{
+/* styling for current weather conditions */
+
+.container {
+  border-style: solid;
+  border-width: thin;
+  margin: 5px;
+  margin-left: 30%;
+}
+
+.header {
+  display: flex;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.cityName {
+  padding: 7px;
+}
+
+.date {
+  padding: 7px;
+}
+
+.cond {
+  padding: 5px;
+  font-size: 20px;
+}
+
+.list {
+  list-style: none;
+}
+
+/* styling for searching for city */
+
+.city {
+  width: 20%;
+  margin-bottom: 7px;
+  padding: 7px;
+}
+
+.btn {
+  background-color: rgb(37, 113, 201);
+  color: white;
+  width: 20%;
+  border-radius: 5px;
+  padding: 7px;
+}
+
+.search {
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* styling for 5 day forecast */
+
+.row {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20px;
+}
+
+.column-0, .column-1, .column-2, .column-3, .column-4 {
   border-style: solid;
   border-width: thin;
   background-color: rgb(38, 47, 66);
   color: white;
 }
 
-.column-0 div, .column-1 div, .column-2 div, .column-3 div, .column-4 div{
+.column-0 div, .column-1 div, .column-2 div, .column-3 div, .column-4 div {
   padding: 5px;
 }
