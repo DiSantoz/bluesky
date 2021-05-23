@@ -18,6 +18,18 @@ $(".btn").on("click", function (event) {
     var city = $("#city").val();
     console.log(city);
 
+    // store city name in local storage
+    if (city) {
+        localStorage.setItem("city", city)
+    }
+
+    // display stored city search history on page
+    var history = document.querySelector('#cityHistory')
+    var retrieve = localStorage.getItem("city");
+    var retrievedCity = document.createElement("li");
+    history.appendChild(retrievedCity);
+    retrievedCity.innerHTML = retrieve;
+
 
 
     fetch(
@@ -48,6 +60,8 @@ $(".btn").on("click", function (event) {
             coord(lat1, lon1)
             fiveDay(lat1, lon1);
         })
+
+
 
 });
 
@@ -90,12 +104,12 @@ function coord(lat1, lon1) {
                 $("#uvIndex").css("background-color", "green");
                 $("#uvIndex").css("color", "white");
                 $("#uvIndex").css("border-radius", "5px");
-            // if uvi between 3-7.99: moderate
+                // if uvi between 3-7.99: moderate
             } else if (uvi <= 7.99) {
                 $("#uvIndex").css("background-color", "orange");
                 $("#uvIndex").css("color", "white");
                 $("#uvIndex").css("border-radius", "5px");
-            // if uvi above 8: severe
+                // if uvi above 8: severe
             } else if (uvi >= 8.00) {
                 $("#uvIndex").css("background-color", "red");
                 $("#uvIndex").css("color", "white");
@@ -163,6 +177,8 @@ function fiveDay(lat1, lon1) {
         })
 
 };
+
+
 
 
 
