@@ -17,9 +17,24 @@
 /* styling for current weather conditions */
   .container{
       border-style: solid;
+      border-width: thin;
       margin: 5px;
       margin-left: 30%;
 
+  }
+
+  .header{
+    display: flex;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .cityName{
+    padding: 7px;
+  }
+
+  .date{
+    padding: 7px;
   }
 
   .cond{
@@ -32,20 +47,40 @@
   }
 
   /* styling for searching for city */
+  .city{
+    width: 20%;
+    margin-bottom: 7px;
+    padding: 7px;
+  }
+  
   .btn{
     background-color: rgb(37, 113, 201);
     color: white;
-    display: flex;
-    justify-content: flex-end;
-    padding: 7px 40px;
-    margin: 10px
+    width: 20%;
+    border-radius: 5px;
+    padding: 7px;
   }
 
   .search{
       margin: 5px;
+      display: flex;
+      flex-direction: column;
   }
   
+  /* styling for 5 day forecast */
 .row{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+
+.column-0, .column-1, .column-2, .column-3, .column-4{
+  border-style: solid;
+  border-width: thin;
+  background-color: rgb(38, 47, 66);
+  color: white;
+}
+
+.column-0 div, .column-1 div, .column-2 div, .column-3 div, .column-4 div{
+  padding: 5px;
 }

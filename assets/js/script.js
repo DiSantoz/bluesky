@@ -11,13 +11,14 @@ var currentDate = moment().format("MM/DD/YYYY");
 // get the currentWeather and lattitue and longitude coordinates for city
 $(".btn").on("click", function (event) {
 
-    $("#cityName").text(currentDate);
+    $("#date").text("(" + currentDate + ")");
     
     event.preventDefault();
 
     var city = $("#city").val();
      console.log(city);
 
+     
 
     fetch(
         'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=8f4b5fb79bf55ca4186b297ac79fb394'
@@ -26,8 +27,14 @@ $(".btn").on("click", function (event) {
             return response.json();
         })
         .then(function (data) {
-            $("#date").text(data.name);
+            console.log(data)
+            $("#cityName").text(data.name);
 
+            // display current weather icon
+            var currentIcon = data.weather[0].icon;
+            console.log(currentIcon);
+            var iconLink = "http://openweathermap.org/img/wn/" + currentIcon + ".png";
+            $('#con').attr('src', iconLink);
 
             lat = (data.coord.lat);
             lat1 = lat.toString()
@@ -95,10 +102,20 @@ function fiveDay(lat1,lon1) {
         .then(function (data) {
             console.log(data)
 
+            
+
             // loop through the 5 arrays of the 7 day forecast to display only 5 day forecast
             for (var i= 0; i < 5; i++){
 
-            var call = document.querySelector(".column-" + i);
+            var call = document.querySelector("#column-" + i);
+
+            //  forecast time
+            var t = data.daily[i].dt
+            console.log(t);
+            var forTime = new Date(t).toLocaleDateString("en-US")
+            console.log(forTime);
+            var displayTime = document.createElement("div")
+            displayTime.innerHTML = forTime;
 
             // temperature forecast
             var forTemp = data.daily[i].temp.max;
