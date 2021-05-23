@@ -106,7 +106,7 @@ function fiveDay(lat1, lon1) {
 
                 //  forecast time
                 var t = data.daily[i].dt
-                var forTime = moment.unix(t).format("MM/DD/YYY");
+                var forTime = moment.unix(t).format("MM/DD/YYYY");
                 console.log(forTime);
                 var displayTime = document.createElement("div");
                 displayTime.innerHTML = forTime;
@@ -117,7 +117,7 @@ function fiveDay(lat1, lon1) {
                 var forIconEl = document.createElement("img");
                 forIconEl.setAttribute("id", "forcon")
                 var forIconLink = "http://openweathermap.org/img/wn/" + forIcon + ".png";
-                $('#forcon').attr('src', forIconLink);
+                $(forIconEl).attr('src', forIconLink);
 
                 // temperature forecast
                 var forTemp = data.daily[i].temp.max;
