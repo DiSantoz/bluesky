@@ -95,23 +95,29 @@ function fiveDay(lat1,lon1) {
         .then(function (data) {
             console.log(data)
 
-            // loop through the 4 arrays of the 7 day forecast to display only 5 day forecast
-            for (var i= 0; i < 4; i++){
+            // loop through the 5 arrays of the 7 day forecast to display only 5 day forecast
+            for (var i= 0; i < 5; i++){
+
+            var call = document.querySelector(".column-" + i);
 
             // temperature forecast
             var forTemp = data.daily[i].temp.max;
-            var displayTemp = document.querySelector('#forTemp');
+            var displayTemp = document.createElement("div");
             displayTemp.innerHTML = "Temp: " + forTemp + "&#176;" + " F";
 
             // windspeed forecast
             var forWind = data.daily[i].wind_speed;
-            var displayWind = document.querySelector('#forWind');
+            var displayWind = document.createElement("div");
             displayWind.innerHTML = "Wind: " + forWind + " MPH";
 
             // humidity forecast
             var forHumid = data.daily[i].humidity;
-            var displayHumid = document.querySelector('#forHumid');
+            var displayHumid = document.createElement("div");
             displayHumid.innerHTML = "Humidity: " + forHumid + " %";
+
+            call.appendChild(displayTemp);
+            call.appendChild(displayWind);
+            call.appendChild(displayHumid);
             }
         })
     

@@ -45,5 +45,7 @@
       margin: 5px;
   }
   
-      
-  
+.row{
+    display: flex;
+    justify-content: space-between;
+}
