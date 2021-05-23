@@ -6,8 +6,6 @@ var lon1;
 // display current date
 var currentDate = moment().format("MM/DD/YYYY");
 
-
-
 // get the currentWeather and lattitue and longitude coordinates for city
 $(".btn").on("click", function (event) {
 
@@ -59,9 +57,6 @@ $(".btn").on("click", function (event) {
             coord(lat1, lon1)
             fiveDay(lat1, lon1);
         })
-
-
-
 });
 
 // function to display weather conditions of city based on lon and lat
@@ -130,7 +125,6 @@ function fiveDay(lat1, lon1) {
         .then(function (data) {
             console.log(data)
 
-            
             // loop through the 5 arrays of the 7 day forecast to display only 5 day forecast
             for (var i = 0; i < 5; i++) {
 
@@ -172,9 +166,8 @@ function fiveDay(lat1, lon1) {
                 call.appendChild(displayTemp);
                 call.appendChild(displayWind);
                 call.appendChild(displayHumid);
-            } 
+            }
         })
-
 };
 
 
