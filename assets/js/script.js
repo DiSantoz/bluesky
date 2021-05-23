@@ -112,10 +112,18 @@ function fiveDay(lat1,lon1) {
             //  forecast time
             var t = data.daily[i].dt
             console.log(t);
-            var forTime = new Date(t).toLocaleDateString("en-US")
+            var forTime = moment.unix(t).format("MM/DD/YYY");
             console.log(forTime);
-            var displayTime = document.createElement("div")
+            var displayTime = document.createElement("div");
             displayTime.innerHTML = forTime;
+
+            // forecast weather icon
+            var forIcon = data.daily[i].weather[0].icon;
+            console.log(forIcon);
+            var forIconEl = document.createElement("img");
+            forIconEl.setAttribute("id", "forcon")
+            var forIconLink = "http://openweathermap.org/img/wn/" + forIcon + ".png";
+            $('#forcon').attr('src', forIconLink);
 
             // temperature forecast
             var forTemp = data.daily[i].temp.max;
@@ -132,6 +140,8 @@ function fiveDay(lat1,lon1) {
             var displayHumid = document.createElement("div");
             displayHumid.innerHTML = "Humidity: " + forHumid + " %";
 
+            call.appendChild(displayTime);
+            call.appendChild(forIconEl);
             call.appendChild(displayTemp);
             call.appendChild(displayWind);
             call.appendChild(displayHumid);
