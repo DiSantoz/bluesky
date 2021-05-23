@@ -12,7 +12,6 @@ var currentDate = moment().format("MM/DD/YYYY");
 $(".btn").on("click", function (event) {
 
     $("#cityName").text(currentDate);
-
     
     event.preventDefault();
 
@@ -27,8 +26,8 @@ $(".btn").on("click", function (event) {
             return response.json();
         })
         .then(function (data) {
+            $("#date").text(data.name);
 
-            console.log(data.name);
 
             lat = (data.coord.lat);
             lat1 = lat.toString()
@@ -59,25 +58,25 @@ function coord(lat1, lon1) {
 
             // display current temp 
             var temp = data.current.temp;
-            console.log("Current temp is " + data.current.temp);
+            // console.log("Current temp is " + data.current.temp);
             var currTemp = document.querySelector('#temp');
             currTemp.innerHTML = "Temp: " + temp + "&#176;" + " F";
 
             // dis play current wind
             var wind = data.current.wind_speed
-            console.log("current wind speed is " + data.current.wind_speed)
+            // console.log("current wind speed is " + data.current.wind_speed)
             var currWind = document.querySelector('#wind');
             currWind.innerHTML = "Wind: " + wind + " MPH";
 
             // display current humdity
             var humid = data.current.humidity
-            console.log("current humidity is " + data.current.humidity)
+            // console.log("current humidity is " + data.current.humidity)
             var currHumid = document.querySelector('#humid');
             currHumid.innerHTML = "Humidity: " + humid + " %";
 
             // display current uvi
             var uvi = data.current.uvi
-            console.log("current uvi is " + data.current.uvi)
+            // console.log("current uvi is " + data.current.uvi)
             var currUvi = document.querySelector('#uv');
             currUvi.innerHTML = "UV Index: " + uvi;
         })
@@ -88,15 +87,34 @@ function coord(lat1, lon1) {
 function fiveDay(lat1,lon1) {
 
     fetch(
-        'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat1+ '&lon=' + lon1 + '&units=imperial&appid=8f4b5fb79bf55ca4186b297ac79fb394'
+        'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat1 + '&lon=' + lon1 + '&units=imperial&exclude=minutely,hourly&appid=8f4b5fb79bf55ca4186b297ac79fb394'
     )
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data.list)
+            console.log(data)
 
+            // loop through the 4 arrays of the 7 day forecast to display only 5 day forecast
+            for (var i= 0; i < 4; i++){
+
+            // temperature forecast
+            var forTemp = data.daily[i].temp.max;
+            var displayTemp = document.querySelector('#forTemp');
+            displayTemp.innerHTML = "Temp: " + forTemp + "&#176;" + " F";
+
+            // windspeed forecast
+            var forWind = data.daily[i].wind_speed;
+            var displayWind = document.querySelector('#forWind');
+            displayWind.innerHTML = "Wind: " + forWind + " MPH";
+
+            // humidity forecast
+            var forHumid = data.daily[i].humidity;
+            var displayHumid = document.querySelector('#forHumid');
+            displayHumid.innerHTML = "Humidity: " + forHumid + " %";
+            }
         })
+    
 };
 
 

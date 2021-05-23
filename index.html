@@ -26,6 +26,7 @@
         <!-- Display current forecast-->
         <div class="container" id="container">
             <h3 class="cityName" id="cityName"></h3>
+            <h3 class="date" id="date"></h3>
             <ul class= "list">
                 <li class="cond" id="temp"></li>
                 <li class="cond" id="wind"></li>
@@ -33,9 +34,16 @@
                 <li class="cond" id="uv"></li>
             </ul>
         </div>
-
+        
+        <!-- Display five day forecast -->
         <div class="row" id="five">
-            <div class="column"></div>
+            <div class="column">
+                <ul>
+                    <li id="forTemp"></li>
+                    <li id="forWind"></li>
+                    <li id="forHumid"></li>
+                </ul>
+            </div>
         </div>
 
     </main>
