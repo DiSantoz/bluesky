@@ -5,7 +5,7 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* header styling */
+/* Weather Dashboard styling */
 
 h1 {
   text-align: center;
@@ -47,7 +47,19 @@ h1 {
   list-style: none;
 }
 
-/* styling for searching for city */
+/* styling for city history */
+
+.cityHistory{
+  background-color: rgb(110, 126, 145);
+  color: white;
+  width: 8%;
+  border-radius: 5px;
+  padding: 7px;
+  margin: 5px;
+  display: flex;
+}
+
+/* styling for search area */
 
 .city {
   width: 20%;

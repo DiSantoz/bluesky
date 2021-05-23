@@ -24,13 +24,12 @@ $(".btn").on("click", function (event) {
     }
 
     // display stored city search history on page
-    var history = document.querySelector('#cityHistory')
+    var history = document.querySelector('#history')
     var retrieve = localStorage.getItem("city");
-    var retrievedCity = document.createElement("li");
+    var retrievedCity = document.createElement("button");
+    retrievedCity.setAttribute("class", "cityHistory")
     history.appendChild(retrievedCity);
     retrievedCity.innerHTML = retrieve;
-
-
 
     fetch(
         'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=8f4b5fb79bf55ca4186b297ac79fb394'
@@ -131,12 +130,12 @@ function fiveDay(lat1, lon1) {
         .then(function (data) {
             console.log(data)
 
-
+            
             // loop through the 5 arrays of the 7 day forecast to display only 5 day forecast
             for (var i = 0; i < 5; i++) {
 
                 var call = document.querySelector("#column-" + i);
-
+                $("#column-" + i).empty();
                 //  forecast time
                 var t = data.daily[i].dt
                 var forTime = moment.unix(t).format("MM/DD/YYYY");
@@ -173,10 +172,11 @@ function fiveDay(lat1, lon1) {
                 call.appendChild(displayTemp);
                 call.appendChild(displayWind);
                 call.appendChild(displayHumid);
-            }
+            } 
         })
 
 };
+
 
 
 
