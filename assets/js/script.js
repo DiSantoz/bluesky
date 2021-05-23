@@ -2,6 +2,7 @@ var lat;
 var lat1;
 var lon;
 var lon1;
+
 // display current date
 var currentDate = moment().format("MM/DD/YYYY");
 
