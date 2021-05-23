@@ -16,11 +16,17 @@ Upon entering the name of the city, the user is presented with the current weath
 
 ![alt text](./assets/images/current.png "A quick look into all the important weather information for the current day")
 
-The planner dynamically changes as the day progress. Any time in the past will display a grey color on the time slot, current time slots will be red and tasks in the future will be green.
+The UV Index will also adjust according to the severity, green:green_circle: for favorable, orange:orange_circle: for moderate, and red:red_circle: severe:
 
-![alt text](./assets/images/time.png "In this example, the current time is 2PM")
+![alt text](./assets/images/uv.png "Simple way to view severity of UV Index")
 
-Please feel free to use this planner in order to better help organize your day! As always, reach out to me if you'd like to see some modifications or updates in the future!
+Below the current weather forecast you will find the 5-day forecast that provides the weather icon, temperature, wind speed and humidity:
+
+![alt text](./assets/images/five.png "Simple snapshot into the week ahead!")
+
+Your search history also saves as you view cities in order to better organize your week!
+
+Please feel free to use Blue Sky and be on the lookout for several new updates in order to make Blue Sky even better! Feedback is always appreciated! 
 
 
 ## License
