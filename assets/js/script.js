@@ -18,9 +18,18 @@ $(".btn").on("click", function (event) {
 
     // store city name in local storage
     if (city) {
-        var cityArr = [];
-        cityArr.push(city);
-        localStorage.setItem("city", cityArr)
+        if (!city) {
+            var cityArr = [];
+            cityArr.push(city);
+            localStorage.setItem("city", cityArr)
+        } else {
+            //something IS saved in localStorage.
+            //1. grab and parse what's already saved, store in a variable newCityArr.
+            var newCityArr = JSON.parse(localStorage.getItem("city"));
+            //2. push our new city string into this array.
+            newCityArr.push(cityArr)
+            localStorage.setItem("city", newCityArr)
+        }
     }
 
     // display stored city search history on page
