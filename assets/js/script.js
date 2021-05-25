@@ -15,10 +15,11 @@ $(".btn").on("click", function (event) {
 
     var city = $("#city").val();
     console.log(city);
-
+    
+    var retrieve = localStorage.getItem("city");
     // store city name in local storage
     if (city) {
-        if (!city) {
+        if (!retrieve) {
             var cityArr = [];
             cityArr.push(city);
             localStorage.setItem("city", cityArr)
@@ -31,10 +32,10 @@ $(".btn").on("click", function (event) {
             localStorage.setItem("city", newCityArr)
         }
     }
-
+    
     // display stored city search history on page
+    
     var history = document.querySelector('#history')
-    var retrieve = localStorage.getItem("city");
     var retrievedCity = document.createElement("button");
     retrievedCity.setAttribute("class", "cityHistory")
     history.appendChild(retrievedCity);
