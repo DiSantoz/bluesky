@@ -16,35 +16,41 @@ $(".btn").on("click", function (event) {
     var city = $("#city").val();
     console.log(city);
 
+    var newCityArr = []
     var retrieve = localStorage.getItem("city");
+
     // store city name in local storage
     if (city) {
         if (!retrieve) {
-            var cityArr = [];
-            cityArr.push(city);
-            localStorage.setItem("city", JSON.stringify(cityArr));
+            
+            newCityArr.push(city);
+            localStorage.setItem("city", JSON.stringify(newCityArr));
         } else {
             //something IS saved in localStorage.
             //1. grab and parse what's already saved, store in a variable newCityArr.
-            var newCityArr = JSON.parse(retrieve);
+             newCityArr = JSON.parse(retrieve);
             //2. push our new city string into this array.
             newCityArr.push(city);
             localStorage.setItem("city", JSON.stringify(newCityArr));
         }
+
     }
     
     // display stored city search history on page
-    
     var history = document.querySelector('#history')
-    var retrievedCity = document.createElement("button");
-    retrievedCity.setAttribute("class", "cityHistory")
-    history.appendChild(retrievedCity);
     
     // console log array holding search history
     console.log(JSON.stringify(newCityArr));
+    
+    // empty out container
+    history.innerHTML= "";
+    
     // for loop to display contents of array
-    for (i=0; i > newCityArr.length; i++){
+    for (i=0; i < newCityArr.length; i++){
+        var retrievedCity = document.createElement("button");
+        retrievedCity.setAttribute("class", "cityHistory")
         retrievedCity.innerHTML = newCityArr[i];
+        history.appendChild(retrievedCity);
     }
     
     fetch(
