@@ -5,8 +5,24 @@ var lon1;
 
 // display current date
 var currentDate = moment().format("MM/DD/YYYY");
+var newCityArr = localStorage.getItem("city") ? JSON.parse(localStorage.getItem("city")) : []
 
-// get the currentWeather and lattitue and longitude coordinates for city
+// empty out container
+var hist = document.getElementById('history')
+hist.innerHTML = "";
+
+// for loop to display contents of array
+for (let i = 0; i < newCityArr.length; i++) {
+    var retrievedCity = document.createElement("button");
+    retrievedCity.setAttribute("class", "cityHistory")
+    retrievedCity.innerHTML = newCityArr[i];
+    retrievedCity.addEventListener("click", function () {
+        getCity(newCityArr[i]);
+    })
+    hist.appendChild(retrievedCity);
+};
+
+// on click, display current date and City Name and store city name
 $(".btn").on("click", function (event) {
 
     $("#date").text("(" + currentDate + ")");
@@ -16,41 +32,24 @@ $(".btn").on("click", function (event) {
     var city = $("#city").val();
     console.log(city);
 
-    // empty Array to hold city names
-    var newCityArr = []
-    var retrieve = localStorage.getItem("city");
-
     // store city name in local storage
     if (city) {
-        //if nothing stored in localstorage
-        if (!retrieve) {
-            newCityArr.push(city);
-            localStorage.setItem("city", JSON.stringify(newCityArr));
-        } else {
-            //city names are saved in localStorage
-
-            //1. grab and parse what's already saved, store in a variable newCityArr.
-            newCityArr = JSON.parse(retrieve);
-            //2. push our new city string into this array.
-            newCityArr.push(city);
-            localStorage.setItem("city", JSON.stringify(newCityArr));
-        }
-
-    }
-
-    
-    // empty out container
-    var history = document.querySelector('#history')
-    history.innerHTML = "";
-
-    // for loop to display contents of array
-    for (i = 0; i < newCityArr.length; i++) {
+        newCityArr.push(city);
         var retrievedCity = document.createElement("button");
         retrievedCity.setAttribute("class", "cityHistory")
-        retrievedCity.innerHTML = newCityArr[i];
-        history.appendChild(retrievedCity);
-    };
+        retrievedCity.innerHTML = city;
+        retrievedCity.addEventListener("click", function () {
+            getCity(city);
+        })
+        hist.appendChild(retrievedCity);
+        localStorage.setItem("city", JSON.stringify(newCityArr));
+        getCity(city);
+    }
 
+});
+
+// GET THE CURRENTWEATHER AND  LATTITUDE AND LONGITUDE COORDINATES FOR CITY
+function getCity(city) {
     fetch(
         'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=8f4b5fb79bf55ca4186b297ac79fb394'
     )
@@ -75,9 +74,9 @@ $(".btn").on("click", function (event) {
             coord(lat1, lon1)
             fiveDay(lat1, lon1);
         })
-});
+}
 
-// function to display weather conditions of city based on lon and lat
+// FUNCTION TO DISPLAY WEATHER CONDITIONS OF CITY BASED ON LON AND LAT
 function coord(lat1, lon1) {
 
     fetch(
@@ -129,8 +128,7 @@ function coord(lat1, lon1) {
         })
 };
 
-// five day forcast function
-
+// FIVE DAY FORECAST FUNCTION
 function fiveDay(lat1, lon1) {
 
     fetch(
