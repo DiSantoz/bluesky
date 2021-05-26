@@ -15,21 +15,21 @@ $(".btn").on("click", function (event) {
 
     var city = $("#city").val();
     console.log(city);
-    
+
     var retrieve = localStorage.getItem("city");
     // store city name in local storage
     if (city) {
         if (!retrieve) {
             var cityArr = [];
             cityArr.push(city);
-            localStorage.setItem("city", cityArr)
+            localStorage.setItem("city", JSON.stringify(cityArr));
         } else {
             //something IS saved in localStorage.
             //1. grab and parse what's already saved, store in a variable newCityArr.
-            var newCityArr = JSON.parse(localStorage.getItem("city"));
+            var newCityArr = JSON.parse(retrieve);
             //2. push our new city string into this array.
-            newCityArr.push(cityArr)
-            localStorage.setItem("city", newCityArr)
+            newCityArr.push(city);
+            localStorage.setItem("city", JSON.stringify(newCityArr));
         }
     }
     
@@ -39,8 +39,14 @@ $(".btn").on("click", function (event) {
     var retrievedCity = document.createElement("button");
     retrievedCity.setAttribute("class", "cityHistory")
     history.appendChild(retrievedCity);
-    retrievedCity.innerHTML = retrieve;
-
+    
+    // console log array holding search history
+    console.log(JSON.stringify(newCityArr));
+    // for loop to display contents of array
+    for (i=0; i > newCityArr.length; i++){
+        retrievedCity.innerHTML = newCityArr[i];
+    }
+    
     fetch(
         'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=8f4b5fb79bf55ca4186b297ac79fb394'
     )
@@ -48,22 +54,18 @@ $(".btn").on("click", function (event) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data)
             $("#cityName").text(data.name);
 
             // display current weather icon
             var currentIcon = data.weather[0].icon;
-            console.log(currentIcon);
             var iconLink = "http://openweathermap.org/img/wn/" + currentIcon + ".png";
             $('#con').attr('src', iconLink);
 
             lat = (data.coord.lat);
             lat1 = lat.toString()
-            console.log(lat1);
 
             lon = data.coord.lon;
             lon1 = lon.toString()
-            console.log(lon1);
 
             // call coord and fiveday function
             coord(lat1, lon1)
@@ -81,7 +83,6 @@ function coord(lat1, lon1) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data)
 
             // display current temp 
             var temp = data.current.temp;
@@ -145,13 +146,11 @@ function fiveDay(lat1, lon1) {
                 //  forecast time
                 var t = data.daily[i].dt
                 var forTime = moment.unix(t).format("MM/DD/YYYY");
-                console.log(forTime);
                 var displayTime = document.createElement("div");
                 displayTime.innerHTML = forTime;
 
                 // forecast weather icon
                 var forIcon = data.daily[i].weather[0].icon;
-                console.log(forIcon);
                 var forIconEl = document.createElement("img");
                 forIconEl.setAttribute("id", "forcon")
                 var forIconLink = "http://openweathermap.org/img/wn/" + forIcon + ".png";
