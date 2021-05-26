@@ -49,6 +49,10 @@ h1 {
 
 /* styling for city history */
 
+.history{
+  position: fixed;
+  width: 100%;
+}
 
 .cityHistory{
   background-color: rgb(110, 126, 145);
