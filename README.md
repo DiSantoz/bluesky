@@ -26,6 +26,16 @@ Below the current weather forecast you will find the 5-day forecast that provide
 
 Your search history also saves as you view cities in order to better organize your week!
 
+![alt text](./assets/images/hist.png "Seach history is saved for easy access")
+
+If you exit the page and revist, your search history will remain! And to make it easier, simply clicking on one of the saved cities will display the current and five day forecase!
+
+![alt text](./assets/images/page.png "Your history will remain on the page!")
+
+Clicking on Fresno for instance :
+
+![alt text](./assets/images/fresno.png "Quick access to weather information with a simple click")
+
 Please feel free to use Blue Sky and be on the lookout for several new updates in order to make Blue Sky even better! Feedback is always appreciated! 
 
 
